@@ -1,0 +1,25 @@
+@import "_variables.less";
+
+html,
+body {
+  #app {
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: @md-text-primary-color;
+
+    nav {
+      padding: 30px;
+
+      a {
+        font-weight: bold;
+        color: @md-text-primary-color;
+
+        &.router-link-exact-active {
+          color: @md-text-hint-color;
+        }
+      }
+    }
+  }
+}

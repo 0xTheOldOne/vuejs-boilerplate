@@ -1,3 +1,8 @@
 {
-  "message": "Salut i18n !!"
+  "message": "Salut i18n !!",
+  "routes": {
+    "home": "Accueil",
+    "settings": "Paramètres",
+    "about": "À-Propos"
+  }
 }

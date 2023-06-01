@@ -1,8 +1,5 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <Menu />
   <router-view />
 </template>
 
@@ -11,9 +8,13 @@ import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import { getSupportedLocales } from "./locales/helper";
 import { getBrowserLocale } from "./locales/helper";
+import Menu from "./components/Menu.vue";
 
 export default defineComponent({
   name: "App",
+  components: {
+    Menu,
+  },
   data() {
     return {
       locales: getSupportedLocales(),
@@ -39,29 +40,5 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-@import "@/assets/styles/_variables.less";
-
-html,
-body {
-  #app {
-    font-size: 14px;
-    font-family: "Montserrat", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: @md-text-primary-color;
-
-    nav {
-      padding: 30px;
-
-      a {
-        font-weight: bold;
-        color: @md-text-primary-color;
-
-        &.router-link-exact-active {
-          color: @md-text-hint-color;
-        }
-      }
-    }
-  }
-}
+@import "@/assets/styles/app.less";
 </style>
