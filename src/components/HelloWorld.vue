@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <p>{{ msg }}</p>
     <p>{{ $t("message") }}</p>
   </div>
@@ -16,7 +16,10 @@ export default defineComponent({
     msg: String,
   },
   data() {
-    return {};
+    return {
+      locales: getSupportedLocales(),
+      browserLocale: getBrowserLocale({ countryCodeOnly: true }),
+    };
   },
   setup() {},
   computed: {},
@@ -24,5 +27,10 @@ export default defineComponent({
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less"></style>
+<style scoped lang="less">
+@import url("@/assets/styles/_variables.less");
+
+.component {
+  text-align: center;
+}
+</style>

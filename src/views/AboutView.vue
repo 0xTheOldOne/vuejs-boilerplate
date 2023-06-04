@@ -1,5 +1,5 @@
 <template>
-  <div>This is an about page</div>
+  <div class="view">This is an about page</div>
 </template>
 
 <script lang="ts">
@@ -19,5 +19,9 @@ export default defineComponent({
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less"></style>
+<style scoped lang="less">
+@import url("@/assets/styles/_variables.less");
+
+.view {
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="view">
     <HelloWorld msg="toto" />
   </div>
 </template>
@@ -24,5 +24,9 @@ export default defineComponent({
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less"></style>
+<style scoped lang="less">
+@import url("@/assets/styles/_variables.less");
+
+.view {
+}
+</style>

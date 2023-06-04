@@ -13,8 +13,16 @@
         <div class="row" v-for="r in routes" :key="r.path">
           <div class="col">
             <router-link :to="r.path" @click="toggleChecked()">
-              {{ getLocalizedRouteName(r.name) }}
+              {{ r.name ? getLocalizedRouteName(r.name) : "" }}
             </router-link>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col separator"></div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <I18nLocaleSwitcher />
           </div>
         </div>
       </div>
@@ -26,11 +34,16 @@
 import { defineComponent } from "vue";
 import { getSupportedLocales } from "@/locales/helper";
 import { getBrowserLocale } from "@/locales/helper";
+import { RouteRecordName } from "vue-router";
+import I18nLocaleSwitcher from "@/components/I18nLocaleSwitcher.vue";
 
 export default defineComponent({
   name: "Menu",
+  components: { I18nLocaleSwitcher },
   data() {
     return {
+      locales: getSupportedLocales(),
+      browserLocale: getBrowserLocale({ countryCodeOnly: true }),
       checked: false,
     };
   },
@@ -44,8 +57,8 @@ export default defineComponent({
     toggleChecked() {
       this.checked = !this.checked;
     },
-    getLocalizedRouteName(routeName: string) {
-      return this.$t("routes." + routeName);
+    getLocalizedRouteName(routeName: RouteRecordName | undefined) {
+      return this.$t("routes." + routeName?.toString());
     },
   },
 });
@@ -56,9 +69,9 @@ export default defineComponent({
 @import url("@/assets/styles/_variables.less");
 
 .menu-container {
-  @scale: 0.5;
-  @hamburger-width: calc(6.5rem * @scale);
-  @hamburger-height: calc(5rem * @scale);
+  @hamburger-width: 2.5rem;
+  @hamburger-height: 2rem;
+  @line-height: 2px;
   width: 100%;
 
   .menu-input {
@@ -92,9 +105,9 @@ export default defineComponent({
 
       .line {
         display: block;
-        height: 2px;
+        height: @line-height;
         width: 100%;
-        border-radius: 0.1rem;
+        border-radius: calc(@line-height / 2);
         background-color: @md-text-primary-color;
 
         &.line1 {
@@ -115,7 +128,7 @@ export default defineComponent({
       &.checked {
         .line {
           @degrees: 45deg;
-          @translate: 2px;
+          @translate: @line-height;
 
           &.line1 {
             transform: rotate(@degrees) translate(@translate);

@@ -35,6 +35,11 @@ export default defineComponent({
     if (this.browserLocale) {
       this.$i18n.locale = this.browserLocale;
     }
+
+    const htmlElement = document.querySelector("html");
+    if (htmlElement) {
+      htmlElement.setAttribute("lang", this.$i18n.locale);
+    }
   },
 });
 </script>

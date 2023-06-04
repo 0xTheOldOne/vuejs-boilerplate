@@ -9,6 +9,7 @@ export function getSupportedLocales() {
     annotatedLocales.push({
       code,
       name: supportedLocales[code],
+      flag: code == 'en' ? 'gb' : code
     });
   }
   return annotatedLocales;
