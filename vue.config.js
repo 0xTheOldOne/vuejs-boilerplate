@@ -1,12 +1,11 @@
 module.exports = {
-  publicPath:
-    process.env.NODE_ENV === "production" ? "/vuejs-boilerplate/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/vuejs-boilerplate/" : "/",
 
   pluginOptions: {
     i18n: {
-      locale: 'en',
-      fallbackLocale: 'en',
-      localeDir: 'locales',
+      locale: "en",
+      fallbackLocale: "en",
+      localeDir: "locales",
       enableLegacy: false,
       runtimeOnly: false,
       compositionOnly: false,

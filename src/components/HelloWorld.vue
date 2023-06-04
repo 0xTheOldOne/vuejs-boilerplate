@@ -1,7 +1,10 @@
 <template>
   <div class="component">
+    <div class="logo">
+      <img src="favicon.png" />
+      <h1>VueJS boilerplate</h1>
+    </div>
     <p>{{ msg }}</p>
-    <p>{{ $t("message") }}</p>
   </div>
 </template>
 
@@ -31,6 +34,14 @@ export default defineComponent({
 @import url("@/assets/styles/_variables.less");
 
 .component {
-  text-align: center;
+  .logo {
+    padding: 5rem 0;
+    text-align: center;
+
+    img {
+      margin-bottom: 2rem;
+      max-width: 75% !important;
+    }
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="view">
-    <HelloWorld msg="toto" />
+    <HelloWorld :msg="$t('message')" />
   </div>
 </template>
 

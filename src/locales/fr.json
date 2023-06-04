@@ -4,5 +4,10 @@
     "home": "Accueil",
     "settings": "Paramètres",
     "about": "À-Propos"
+  },
+  "pages": {
+    "menu": {
+      "title": "Menu"
+    }
   }
 }

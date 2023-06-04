@@ -1,6 +1,6 @@
 <template>
   <div class="menu-container">
-    <div class="menu-input">
+    <div class="menu-input" :title="$t('pages.menu.title')">
       <input class="checkbox" type="checkbox" name="" id="" v-model="checked" />
       <div class="lines" :class="{ checked: checked }">
         <span class="line line1"></span>
@@ -9,21 +9,16 @@
       </div>
     </div>
     <div class="menu" :class="{ show: checked }">
-      <div class="container">
-        <div class="row" v-for="r in routes" :key="r.path">
-          <div class="col">
-            <router-link :to="r.path" @click="toggleChecked()">
-              {{ r.name ? getLocalizedRouteName(r.name) : "" }}
-            </router-link>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col separator"></div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <I18nLocaleSwitcher />
-          </div>
+      <h1>{{ $t("pages.menu.title") }}</h1>
+      <div class="separator"></div>
+      <router-link v-for="r in routes" :key="r.path" :to="r.path" @click="toggleChecked()">
+        {{ r.name ? getLocalizedRouteName(r.name) : "" }}
+      </router-link>
+
+      <div class="stick-to-end">
+        <I18nLocaleSwitcher />
+        <div class="version">
+          Version <code>{{ version }}</code>
         </div>
       </div>
     </div>
@@ -31,6 +26,7 @@
 </template>
 
 <script lang="ts">
+import packageJson from "../../package.json";
 import { defineComponent } from "vue";
 import { getSupportedLocales } from "@/locales/helper";
 import { getBrowserLocale } from "@/locales/helper";
@@ -42,6 +38,7 @@ export default defineComponent({
   components: { I18nLocaleSwitcher },
   data() {
     return {
+      version: packageJson.version,
       locales: getSupportedLocales(),
       browserLocale: getBrowserLocale({ countryCodeOnly: true }),
       checked: false,
@@ -107,31 +104,34 @@ export default defineComponent({
         display: block;
         height: @line-height;
         width: 100%;
-        border-radius: calc(@line-height / 2);
-        background-color: @md-text-primary-color;
+        border-radius: @line-height;
+        background-color: @text-primary-color;
+        transition: transform 0.5s ease-in-out;
 
         &.line1 {
-          transform-origin: 0% 0%;
-          transition: transform 0.4s ease-in-out;
+          transition: transform 0.5s ease-in-out;
+          transform-origin: top right;
         }
 
         &.line2 {
-          transition: transform 0.2s ease-in-out;
+          transition: transform 0.25s ease-in-out;
         }
 
         &.line3 {
-          transform-origin: 0% 100%;
-          transition: transform 0.4s ease-in-out;
+          transform-origin: bottom right;
+          transition: transform 0.5s ease-in-out;
         }
       }
 
       &.checked {
+        padding-right: calc((@hamburger-width - @hamburger-height) / 2);
+
         .line {
           @degrees: 45deg;
-          @translate: @line-height;
+          @translate: (-1 * @line-height - 1px);
 
           &.line1 {
-            transform: rotate(@degrees) translate(@translate);
+            transform: rotate(-@degrees) translate(@translate);
           }
 
           &.line2 {
@@ -139,7 +139,7 @@ export default defineComponent({
           }
 
           &.line3 {
-            transform: rotate(-@degrees) translate(@translate);
+            transform: rotate(@degrees) translate(@translate);
           }
         }
       }
@@ -149,7 +149,7 @@ export default defineComponent({
   .menu {
     @blur: 10px;
     display: none;
-    transition: all ease-in-out 1s;
+    transition: all ease-in-out 0.5s;
     position: fixed;
     left: 0;
     right: 0;
@@ -157,27 +157,36 @@ export default defineComponent({
     top: 0;
     z-index: 499;
     padding: 1rem;
-
-    background: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(@blur);
-    -webkit-backdrop-filter: blur(@blur);
+    background-color: @background-color;
 
     &.show {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      .stick-to-end {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-top: auto;
+      }
     }
 
     .separator {
       height: 1rem;
     }
 
+    .version {
+      text-align: center;
+    }
+
     a {
       font-size: 1rem;
       cursor: pointer;
       text-decoration: none;
-      color: @md-text-primary-color;
+      color: @text-primary-color;
     }
   }
 }
