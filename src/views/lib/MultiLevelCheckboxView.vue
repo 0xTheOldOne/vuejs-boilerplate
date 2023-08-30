@@ -1,8 +1,11 @@
 <template>
   <div>
-    <h1>Multi-Level Checkbox Example</h1>
     <multi-level-checkbox :structure="structure" :show-ids="true" @change="updateSelectedIds" />
-    <span class="badge rounded-pill bg-light text-dark" v-for="id in selectedIds" :key="id">{{ id }}</span>
+    Selection :
+    <template v-if="selectedIds.length > 0">
+      <span class="badge rounded-pill bg-light text-dark" v-for="id in selectedIds" :key="id">{{ id }}</span>
+    </template>
+    <template v-else>{{ $t("empty") }}</template>
   </div>
 </template>
 

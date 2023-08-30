@@ -1,5 +1,6 @@
 {
   "message": "Salut i18n !!",
+  "empty": "vide",
   "routes": {
     "home": "Accueil",
     "settings": "Paramètres",

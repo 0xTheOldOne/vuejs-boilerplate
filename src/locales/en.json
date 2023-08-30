@@ -1,5 +1,6 @@
 {
   "message": "Hello i18n !!",
+  "empty": "empty",
   "routes": {
     "home": "Home",
     "settings": "Settings",
