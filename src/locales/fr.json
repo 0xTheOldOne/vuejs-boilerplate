@@ -3,7 +3,8 @@
   "routes": {
     "home": "Accueil",
     "settings": "Paramètres",
-    "about": "À-Propos"
+    "about": "À-Propos",
+    "multi-level-checkbox": "Multi-Level Checkbox"
   },
   "pages": {
     "menu": {

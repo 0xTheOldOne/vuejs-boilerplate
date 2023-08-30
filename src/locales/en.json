@@ -3,7 +3,8 @@
   "routes": {
     "home": "Home",
     "settings": "Settings",
-    "about": "About"
+    "about": "About",
+    "multi-level-checkbox": "Multi-Level Checkbox"
   },
   "pages": {
     "menu": {
