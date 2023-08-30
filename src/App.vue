@@ -14,19 +14,26 @@
   </div>
 
   <div class="content">
-    <h1 class="route-name">
-      {{ getLocalizedRouteName($route.name) }}
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="route-name">
+            {{ getLocalizedRouteName($route.name) }}
 
-      <div class="sidebar-toggle" :class="{ checked: checked }">
-        <input class="checkbox" type="checkbox" name="" id="" v-model="checked" />
-        <div class="lines">
-          <span class="line line1"></span>
-          <span class="line line2"></span>
-          <span class="line line3"></span>
+            <div class="sidebar-toggle" :class="{ checked: checked }">
+              <input class="checkbox" type="checkbox" name="" id="" v-model="checked" />
+              <div class="lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+              </div>
+            </div>
+          </h1>
         </div>
       </div>
-    </h1>
-    <router-view />
+
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -258,14 +265,13 @@ body {
 
       .route-name {
         position: relative;
-        display: none;
         padding: 1rem 0;
         margin: 0;
         margin-bottom: 1rem;
       }
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 960px) {
       flex-direction: column;
 
       .sidebar-toggle {
@@ -287,12 +293,6 @@ body {
           height: auto;
           opacity: 1;
           visibility: visible;
-        }
-      }
-
-      .content {
-        .route-name {
-          display: block;
         }
       }
     }
